@@ -1,3 +1,15 @@
 #Listado {
     z-index: 1000;
 }
+#Listado button {
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: #10403b;
+}
+#Listado button:hover{
+    cursor: pointer;
+    background-color: #15554f;
+}

@@ -24,11 +24,17 @@ const Listado = () => {
     })
   }
 
+  const cerrarSesion = () => {
+    localStorage.clear();
+    navigate('/')
+  }
+
 
 
   return (
     <div id='Listado'>
-      <button onClick={ cargaDatos }>Cargar Datos</button>
+      <motion.button whileHover={{scale:1.1}} onClick={cerrarSesion}>Cerrar Sesión</motion.button>
+      <motion.button whileHover={{scale:1.1}} onClick={ cargaDatos }>Cargar Datos</motion.button>
       {datos?(<motion.ul
       initial={{scale:0}}
       animate={{scale:1}}
