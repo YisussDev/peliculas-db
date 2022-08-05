@@ -4,57 +4,72 @@ import logomax from '../imagenes/BarraTareas/logomax.png'
 import bmenu from '../imagenes/BarraTareas/bmenu.png'
 import './firebase'
 import '../estilos/Listado.css'
-import Tarjetas from './Tarjetas'
 import axios from "axios";
 import { useEffect, useState } from "react";
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
+import InfoCompleta from "./InfoCompleta";
+import PelisCompletas from "./PelisCompletas";
+
 
 
 const Listado = () => {
-
-  const [data, setData] = useState([])
-  const[url, setUrl] = useState('https://api.themoviedb.org/3/movie/popular?api_key=8aaf9f27f6ebdda5d9ba7dcfd09e1bce&language=en-US&page=1')
+  
+  const token2 = localStorage.getItem('token');
   let navigate = useNavigate();
+  const[page, setPage] = useState(1);
+  const [data, setData] = useState([]);
+  const [estadoBotones, setEstadoBotones] = useState(true)
+  
+  useEffect(() => {
+    axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=8aaf9f27f6ebdda5d9ba7dcfd09e1bce&language=en-US&page=${page}`)
+      .then(res => setData(res.data.results))
+      
+  },[page])
 
-  useEffect(()=>{
-    axios.get(url)
-    .then( res => setData(res.data.results))
-  },[url])
 
-
-  let token2 = localStorage.getItem('token')
-  const cerrarSesion = () => {
-    localStorage.clear();
-    navigate('/')
+  const disminuir = () => {
+    if(page > 1){
+      setPage(page - 1);
+    }
   }
-  console.log(data);
-
+  const aumentar = () => {
+    if(page){
+      setPage(page + 1);
+    }
+  }
+  const clickImagen = () => {
+    setPage(1);
+    setEstadoBotones(true);
+    navigate('/listado');
+  }
   return (
     <>
-    {!token2 && <Navigate to ='/' /> }
-    <div id='Listado'>
-      <div id="barratareas">
-        <img src={logomax} id="logo" alt="" />
-        <div id='botonMenu'>
-          <img src={bmenu} alt="" />
+      {!token2 && <Navigate to='/' />}
+        <div id='Listado' >
+          <div id="barratareas">
+            <img onClick={()=>clickImagen()} src={logomax} id="logo" alt="" />
+            <div id='botonMenu'>
+              <img src={bmenu} alt="" />
+            </div>
+          </div>
+          <section id='sectionInicio'>
+            {estadoBotones&&<div id="botonesPaginas">
+              <button onClick={()=>disminuir()}>-</button>
+              <span>{page}</span>
+              <button onClick={()=>aumentar()}>+</button>
+            </div>}
+            <Routes>
+              <Route Exact path="/" element={<PelisCompletas data={data} />} />
+              <Route Exact path="/info" element={<InfoCompleta />} />
+            </Routes>
+          </section>
         </div>
+      <div id="barralateral">
+
       </div>
-      <section id='sectionInicio'>
-        {data.map((res, id) => {
-          return <Tarjetas 
-          key = {id}
-          poster_path={res.poster_path}
-          title={res.title}
-          release_date={res.release_date}
-          vote_average={res.vote_average}
-          />
-          
-        })}
-
-      </section>
-    </div>
-    <div id="barralateral">
-
-    </div>
     </>
   )
 }
