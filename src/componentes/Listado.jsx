@@ -1,50 +1,61 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from "react-router-dom";
+// import React, { useState } from 'react'
+import { useNavigate, Navigate } from "react-router-dom";
+import logomax from '../imagenes/BarraTareas/logomax.png'
+import bmenu from '../imagenes/BarraTareas/bmenu.png'
 import './firebase'
 import '../estilos/Listado.css'
-import {cargaDatosF} from './firebase'
-import { motion } from 'framer-motion'
+import Tarjetas from './Tarjetas'
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 
 const Listado = () => {
-    let navigate = useNavigate();
-    useEffect(() =>{
-    let token2 = localStorage.getItem('token');
-    if(!token2){
-      navigate('/')
-    }
-  },[navigate])
 
-  const [datos, setDatos] = useState()
+  const [data, setData] = useState([])
+  const[url, setUrl] = useState('https://api.themoviedb.org/3/movie/popular?api_key=8aaf9f27f6ebdda5d9ba7dcfd09e1bce&language=en-US&page=1')
+  let navigate = useNavigate();
 
- async function cargaDatos () {
-    let res = await cargaDatosF()
-    res.forEach(doc => {
-      setDatos(doc.data());
-    })
-  }
+  useEffect(()=>{
+    axios.get(url)
+    .then( res => setData(res.data.results))
+  },[url])
 
+
+  let token2 = localStorage.getItem('token')
   const cerrarSesion = () => {
     localStorage.clear();
     navigate('/')
   }
-
-
+  console.log(data);
 
   return (
+    <>
+    {!token2 && <Navigate to ='/' /> }
     <div id='Listado'>
-      <motion.button whileHover={{scale:1.1}} onClick={cerrarSesion}>Cerrar Sesión</motion.button>
-      <motion.button whileHover={{scale:1.1}} onClick={ cargaDatos }>Cargar Datos</motion.button>
-      {datos?(<motion.ul
-      initial={{scale:0}}
-      animate={{scale:1}}
-      >
-        <li>{datos.nombre}</li>
-        <li>{datos.apellido}</li>
-        <li>{datos.celular}</li>
-        <li>{datos.email}</li>
-      </motion.ul>):null}
+      <div id="barratareas">
+        <img src={logomax} id="logo" alt="" />
+        <div id='botonMenu'>
+          <img src={bmenu} alt="" />
+        </div>
+      </div>
+      <section id='sectionInicio'>
+        {data.map((res, id) => {
+          return <Tarjetas 
+          key = {id}
+          poster_path={res.poster_path}
+          title={res.title}
+          release_date={res.release_date}
+          vote_average={res.vote_average}
+          />
+          
+        })}
+
+      </section>
     </div>
+    <div id="barralateral">
+
+    </div>
+    </>
   )
 }
 

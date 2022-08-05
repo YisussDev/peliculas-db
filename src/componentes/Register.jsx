@@ -58,15 +58,18 @@ const Register = () => {
     <h1>¡Registrate!</h1>
         <form onSubmit={manejoEnvio}>
           <label>
-            <motion.input whileFocus={{scale:1.05}} type="email" name='email' placeholder='ingrese su correo electrónico...'/>
+            <h3>Correo Electrónico:</h3>
+            <motion.input whileFocus={{scale:1.05}} type="email" name='email' placeholder='Ingrese su correo electrónico...'/>
           </label>
           <br/>
           <label>
-            <motion.input whileFocus={{scale:1.05}} type="password" name='password' placeholder='ingrese su contraseña...'/>
+            <h3>Correo Electrónico:</h3>
+            <motion.input whileFocus={{scale:1.05}} type="password" name='password' placeholder='Ingrese su contraseña...'/>
           </label><br/>
             <button>Registrarse</button>
         </form>
             <motion.button onClick={irLogin} >Volver</motion.button>
+            <h4>¿Ya tienes cuenta?</h4>
     </motion.div>
     </>
   )

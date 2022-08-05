@@ -2,17 +2,18 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 :root {
-    --principal: #10403B;
-    --secundario: #BFBFBF;
+    --principal: #1A1A1A;
+    --secundario: #333333;
+    --terciario: #4D4D4D;
 }
 #App {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 100vh;
-    background: linear-gradient(to bottom, #ffffff, #9b9b9b);
+    min-height: 100vh;
+    background-color: var(--secundario);
 }

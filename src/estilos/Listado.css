@@ -1,5 +1,8 @@
 #Listado {
+    padding-top: 80px;
     z-index: 1000;
+    width: 100%;
+    height: 100%;
 }
 #Listado button {
     padding: 10px 20px;
@@ -12,4 +15,47 @@
 #Listado button:hover{
     cursor: pointer;
     background-color: #15554f;
+}
+#barratareas {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 40px;
+    background-color: var(--principal);
+    position: fixed;
+    top: 0px;
+    width: 100vw;
+    z-index: 10000;
+}
+#logo{
+    width: 120px;
+    height: auto;
+}
+#botonMenu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secundario);
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    transition: 0.3s;
+}
+#botonMenu:hover{
+    cursor: pointer;
+    background-color: var(--terciario);
+    transform: scale(1.1);
+}
+#botonMenu img {
+    height: 50%;
+    width: 50%;
+}
+#sectionInicio{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
 }

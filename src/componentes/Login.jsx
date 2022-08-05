@@ -55,19 +55,23 @@ const Login = () => {
     animate={{scale:1, rotate:0}}
     transition={{duration:0.5}}
     >
-          <div id='imagen'><img src={perfil} alt="" title='perfil'/></div>
-    <h1>Iniciar sesión</h1>
-        <form onSubmit={manejoEnvio}>
-          <label>
-            <motion.input whileFocus={{scale:1.05}} type="email" name='email' placeholder='ingrese su correo electrónico...'/>
-          </label>
+      <div id='imagen'><img src={perfil} alt="" title='perfil'/></div>
+        <h1>Iniciar sesión</h1>
+          <form onSubmit={manejoEnvio}>
+            <label>
+              <h3>Correo Electrónico:</h3>
+              <motion.input whileFocus={{scale:1.05}} type="email" name='email' placeholder='Ingrese su correo electrónico...'/>
+            </label>
           <br/>
-          <label>
-            <motion.input whileFocus={{scale:1.05}} type="password" name='password' placeholder='ingrese su contraseña...'/>
-          </label><br/>
-            <button>Ingresar</button>
-        </form>
-        <button onClick={irRegistro}>¡Registrate!</button>
+            <label>
+              <h3>Contraseña:</h3>
+              <motion.input whileFocus={{scale:1.05}} type="password" name='password' placeholder='Ingrese su contraseña...'/>
+            </label><br/>
+              <button>Ingresar</button>
+              
+          </form>
+        <button id='register' onClick={irRegistro}>¡Registrate!</button>
+        <h4>¿No tienes cuenta?</h4>
     </motion.div>
   )
 }
