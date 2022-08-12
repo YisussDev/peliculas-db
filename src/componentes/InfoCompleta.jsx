@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import {useNavigate} from 'react-router-dom'
 import '../estilos/InfoCompleta.css'
 
 const capturarId = () => {
@@ -10,12 +11,18 @@ const capturarId = () => {
 }
 
 const InfoCompleta = (props) => {
+  let navigate = useNavigate();
   const [movieData, setMovieData] = useState({})
   useEffect(()=>{
     axios.get(capturarId())
     .then(res => setMovieData(res.data))
   })
+  const volverListado = () => {
+    navigate('/listado')
+  }
   return (
+    <>
+    <button id='volver' onClick={volverListado}>Volver</button>
     <div id='infoCompleta'>
       <img src={'https://image.tmdb.org/t/p/w500'+movieData.backdrop_path} alt="" />
       <div id='datosPelicula'>
@@ -24,6 +31,7 @@ const InfoCompleta = (props) => {
         <p id='descripcion'><strong>Descripción:</strong> <br />{movieData.overview}</p>
       </div>
     </div>
+    </>
   )
 }
 

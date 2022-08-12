@@ -1,0 +1,20 @@
+#botonesPaginas{
+    margin: 20px 0px;
+}
+#botonesPaginas > button {
+    padding: 10px 20px;
+    margin: 0px 20px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    transition-duration: 0.3s;
+    background-color: var(--principal);
+}
+#botonesPaginas > button:hover{
+    cursor: pointer;
+    color: #000000;
+    background-color: #ffffff;
+}
+#botonesPaginas > span{
+    color: white;
+}

@@ -12,64 +12,59 @@ import {
 } from "react-router-dom";
 import InfoCompleta from "./InfoCompleta";
 import PelisCompletas from "./PelisCompletas";
+import { motion } from "framer-motion";
 
+const variants = {
+  open: {x: '-100vw' },
+  closed: {x: "100vw" },
+}
 
 
 const Listado = () => {
   
-  const token2 = localStorage.getItem('token');
   let navigate = useNavigate();
+  const token2 = localStorage.getItem('token');
   const[page, setPage] = useState(1);
   const [data, setData] = useState([]);
-  const [estadoBotones, setEstadoBotones] = useState(true)
+  const [isOpen, setIsOpen] = useState(false);
   
   useEffect(() => {
-    axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=8aaf9f27f6ebdda5d9ba7dcfd09e1bce&language=en-US&page=${page}`)
+    axios.get(`https://api.themoviedb.org/3/movie/upcoming?api_key=8aaf9f27f6ebdda5d9ba7dcfd09e1bce&language=en-US&page=${page}`)
       .then(res => setData(res.data.results))
-      
   },[page])
-
-
-  const disminuir = () => {
-    if(page > 1){
-      setPage(page - 1);
-    }
-  }
-  const aumentar = () => {
-    if(page){
-      setPage(page + 1);
-    }
-  }
   const clickImagen = () => {
     setPage(1);
-    setEstadoBotones(true);
     navigate('/listado');
   }
+  
   return (
     <>
       {!token2 && <Navigate to='/' />}
+
         <div id='Listado' >
+          <motion.div className="barraLateral"
+        animate={isOpen ? "open" : "closed"}
+        variants={variants} >
+        <ul>
+          <li>Inicio</li>
+          <li>Populares</li>
+          <li>Contacto</li>
+          <button onClick={()=> setIsOpen(false)}>❌</button>
+        </ul>
+          </motion.div>
           <div id="barratareas">
             <img onClick={()=>clickImagen()} src={logomax} id="logo" alt="" />
-            <div id='botonMenu'>
+            <div id='botonMenu' onClick={() => setIsOpen(true)}>
               <img src={bmenu} alt="" />
             </div>
           </div>
           <section id='sectionInicio'>
-            {estadoBotones&&<div id="botonesPaginas">
-              <button onClick={()=>disminuir()}>-</button>
-              <span>{page}</span>
-              <button onClick={()=>aumentar()}>+</button>
-            </div>}
             <Routes>
               <Route Exact path="/" element={<PelisCompletas data={data} />} />
               <Route Exact path="/info" element={<InfoCompleta />} />
             </Routes>
           </section>
         </div>
-      <div id="barralateral">
-
-      </div>
     </>
   )
 }

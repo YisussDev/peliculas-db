@@ -4,26 +4,6 @@
     width: 100%;
     height: 100%;
 }
-#botonesPaginas{
-    margin: 20px 0px;
-}
-#botonesPaginas > button {
-    padding: 10px 20px;
-    margin: 0px 20px;
-    border-radius: 10px;
-    border: none;
-    color: white;
-    transition-duration: 0.3s;
-    background-color: var(--principal);
-}
-#botonesPaginas > button:hover{
-    cursor: pointer;
-    color: #000000;
-    background-color: #ffffff;
-}
-#botonesPaginas > span{
-    color: white;
-}
 #barratareas {
     height: 60px;
     display: flex;
@@ -34,7 +14,7 @@
     position: fixed;
     top: 0px;
     width: 100vw;
-    z-index: 10000;
+    z-index: 100;
 }
 #logo{
     width: 120px;
@@ -68,4 +48,40 @@
     align-items: center;
     width: 100%;
     min-height: calc(100vh - 80px);
+}
+.barraLateral {
+    position: fixed;
+    box-shadow: 0px 0px 2px 1px #111111;
+    top: 0;
+    right: -100vw;
+    height: 100vh;
+    width: 50vw;
+    background-color: var(--principal);
+    transition: 0.1s linear;
+    z-index: 10000000;
+}
+.barraLateral > ul > li {
+    padding: 20px 30px;
+    color: white;
+}
+.barraLateral > ul > li:hover{
+    background-color: var(--terciario);
+    color: white;
+    cursor: pointer;
+}
+.barraLateral > ul > button {
+    background-color: #111111;
+    transition: 0.3s;
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 20px;
+    height: 30px;
+    width: 30px;
+    left: calc((50vw - 15px) / 2);
+}
+.barraLateral > ul > button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: var(--terciario);
 }
