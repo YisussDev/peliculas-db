@@ -1,0 +1,48 @@
+.buscador {
+    z-index: 10000000;
+    height: 40px;
+    width: 260px;
+    display: none;
+    column-gap: 5px;
+    position: fixed;
+    top: 20px;
+    right: 370px;
+}
+.buscador > input {
+    border-radius: 5px;
+    height: 100%;
+    width: 210px;
+    border: 1px solid white;
+    color: white;
+    padding: 2px 5px;
+    background-color: var(--principal);
+}
+.buscador > input:focus{
+    background-color: white;
+    color: black;
+}
+.buscador > button {
+    color: white;
+    border: 1px solid white;
+    background-color: var(--principal);
+    border-radius: 5px;
+    padding: 0px;
+    height: 40px;
+    width: 40px;
+}
+.buscador > button:hover {
+    background-color: var(--secundario);
+    cursor: pointer;
+    border: 1px solid black;
+    color: black;
+}
+.buscador > button:active {
+    transform: scale(0.95);
+}
+
+@media (min-width: 850px) {
+    .buscador{
+        display: flex;
+        align-items: center;
+    }
+}

@@ -5,7 +5,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Listado from "./componentes/Listado";
+import Listado from "./componentes/Listado/Listado";
 import Register from "./componentes/Register";
 
 function App() {
