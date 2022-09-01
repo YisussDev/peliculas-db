@@ -16,9 +16,9 @@
     justify-content: center;
     align-items: center;
     color: white;
+    transition: 0.3s linear;
 }
 .barraLateral > ul > li:hover{
-    background-color: var(--terciario);
     color: white;
     cursor: pointer;
 }
@@ -47,6 +47,7 @@
     display: flex;
 }
 
+
 @media screen and (min-width:850px) {
     .barraLateral{
         padding-top: 0px;
@@ -62,13 +63,21 @@
         height: 100%;
     }
     .barraLateral > ul > li {
-        padding: 10px 11px;
-        border: none;
+        padding: 0px 11px;
         display: flex;
         align-items: center;
+        border-bottom: 4px inset var(--principal);
     }
     .barraLateral >ul > button {
         display: none;
+    }
+    .barraLateral > ul> li:hover{
+        border-bottom: 4px inset white;
+
+    }
+    .barraLateral > ul> li:nth-child(3):hover{
+        background-color: rgb(131, 0, 0);
+        border-bottom: 4px solid white;
     }
     #botonMenu{
         display: none;

@@ -9,11 +9,10 @@
     right: 370px;
 }
 .buscador > input {
-    border-radius: 5px;
     height: 100%;
     width: 210px;
-    border: 1px solid white;
     color: white;
+    animation: colores 4s linear infinite;
     padding: 2px 5px;
     background-color: var(--principal);
 }
@@ -25,7 +24,7 @@
     color: white;
     border: 1px solid white;
     background-color: var(--principal);
-    border-radius: 5px;
+    border-radius: 50%;
     padding: 0px;
     height: 40px;
     width: 40px;
@@ -44,5 +43,19 @@
     .buscador{
         display: flex;
         align-items: center;
+    }
+}
+
+@keyframes colores {
+    0%{
+        border: 1px solid white;
+    }
+    50%{
+        border: 1px solid var(--secundario);
+
+    }
+    100%{
+        border: 1px solid white;
+
     }
 }

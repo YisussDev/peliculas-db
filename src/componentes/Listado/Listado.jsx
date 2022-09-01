@@ -2,7 +2,6 @@
 import { Navigate } from "react-router-dom";
 import '../firebase'
 import './Listado.css'
-import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import InfoCompleta from "../InfoCompleta";
 import PelisCompletas from "../PelisCompletas";
@@ -12,7 +11,6 @@ import BarraTareas from "../BarraTareas/BarraTareas";
 
 const Listado = () => {
   const token2 = localStorage.getItem('token');
-  const [isOpen, setIsOpen] = useState(false);
   
   
   return (
@@ -20,7 +18,7 @@ const Listado = () => {
       {!token2 && <Navigate to='/' />}
 
         <div id='Listado' >
-          <BarraLateral isOpen={isOpen} />
+          <BarraLateral />
           <BarraTareas />
           <section id='sectionInicio'>
             <Routes>
